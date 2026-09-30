@@ -1,0 +1,16 @@
+{
+  "features": [
+    "temperature",
+    "vibration",
+    "humidity",
+    "pressure",
+    "energy_consumption"
+  ],
+  "cluster_names": {
+    "1": "Ringan",
+    "2": "Normal",
+    "0": "Berat"
+  },
+  "silhouette": 0.14103892080014002,
+  "davies_bouldin": 1.9458744059308142
+}
