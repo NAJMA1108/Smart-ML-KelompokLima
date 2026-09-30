@@ -1,0 +1,6 @@
+/* ========== 5. PAGE-SPECIFIC ========== */
+.live{font:700 2.4rem var(--f-mono);color:var(--cyan)}
+.spark{width:100%;height:64px}
+.step .mono{color:var(--cyan)}
+#scatter{width:100%;height:auto;background:var(--panel-2);border:1px solid var(--line);border-radius:8px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}

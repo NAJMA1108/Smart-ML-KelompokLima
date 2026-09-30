@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartML – Smart Manufacturing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#home">Smart<span class="cyan">ML</span></a>
+    <nav class="tabs" aria-label="Main">
+      <button class="tab" data-page="home">Home</button>
+      <button class="tab" data-page="classification">Classification</button>
+      <button class="tab" data-page="clustering">Clustering</button>
+      <button class="tab" data-page="about">About</button>
+    </nav>
+    <span class="badge">● Events: Sensor</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ========== PAGE: HOME ========== -->
+<section class="page" id="home">
+  <div class="grid hero">
+    <div class="head">
+      <span class="badge">Industry 4.0 · Predictive Maintenance</span>
+      <h1>Smart Manufacturing <span class="cyan">ML</span></h1>
+      <p class="cyan">Machine Learning for Industrial Monitoring &amp; Predictive Maintenance</p>
+      <p>Analyze real-time industrial IoT data streams to detect machine faults, diagnose failures, and plan maintenance before costly breakdowns happen.</p>
+      <div class="chips">
+        <button class="btn" data-go="classification">Start Analyzing</button>
+        <button class="btn ghost" data-go="clustering">Explore Clusters</button>
+      </div>
+    </div>
+    <div class="card accent" aria-live="polite">
+      <div class="mono">LIVE SENSOR ELEMENT</div>
+      <div class="live"><span id="liveVal">0.28</span> <span class="mono">mm/s</span></div>
+      <svg class="spark" id="spark" viewBox="0 0 200 64" preserveAspectRatio="none"><polyline id="sparkLine" fill="none" stroke="#22d3ee" stroke-width="2"/></svg>
+      <div class="grid g2" style="margin-top:12px">
+        <div class="stat"><span class="mono">Anomaly</span><b id="liveAnom" style="font-size:1rem">Normal</b></div>
+        <div class="stat"><span class="mono">Sampling</span><b style="font-size:1rem">1 Hz</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section card">
+    <h2>Smart Manufacturing IoT-Cloud Monitoring Dataset</h2>
+    <p class="mono" style="margin-top:6px">Industrial IoT sensor logs capturing temperature, vibration, humidity, pressure and energy usage.</p>
+    <div class="chips" style="margin-top:14px">
+      <span class="chip">Temperature</span><span class="chip">Vibration RMS</span><span class="chip">Humidity</span><span class="chip">Pressure</span><span class="chip">Energy</span><span class="chip">Machine Status</span>
+    </div>
+    <div class="grid g4 keep2" style="margin-top:16px">
+      <div class="stat"><span class="mono">Records</span><b>100k</b></div>
+      <div class="stat"><span class="mono">Sensors</span><b>50</b></div>
+      <div class="stat"><span class="mono">Features</span><b>6</b></div>
+      <div class="stat"><span class="mono">Classes</span><b>3</b></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="head"><h2>Machine Learning Methods</h2></div>
+    <div class="grid g2">
+      <article class="card accent">
+        <span class="badge">Supervised</span>
+        <h3 style="margin-top:10px">Classification</h3>
+        <p style="color:var(--muted);margin:6px 0 14px">Predict whether a machine needs maintenance from live sensor readings.</p>
+        <button class="btn block" data-go="classification">Open Classification</button>
+      </article>
+      <article class="card accent">
+        <span class="badge">Unsupervised</span>
+        <h3 style="margin-top:10px">Clustering</h3>
+        <p style="color:var(--muted);margin:6px 0 14px">Discover hidden machine-behavior patterns without labeled data.</p>
+        <button class="btn block" data-go="clustering">Open Clustering</button>
+      </article>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="head"><h2>End-to-End Pipeline &amp; Workflow</h2><p>From raw sensor data to an actionable maintenance decision.</p></div>
+    <div class="grid g4 keep2" id="pipeline"></div>
+  </div>
+
+  <div class="section card">
+    <h3>Interactive Edge Simulator</h3>
+    <div class="grid g2" style="margin-top:14px;align-items:center">
+      <div>
+        <label for="simVib">Vibration: <span id="simVibOut">2.0</span> mm/s</label>
+        <input id="simVib" type="range" min="0" max="10" step="0.1" value="2">
+      </div>
+      <div class="stat"><span class="mono">Failure probability</span><b id="simRisk">12%</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PAGE: CLASSIFICATION ========== -->
+<section class="page" id="classification">
+  <div class="head">
+    <span class="badge">Supervised Learning · Classification</span>
+    <h1>Maintenance Prediction</h1>
+    <p>Predict maintenance needs from sensor readings using an ensemble model.</p>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr 1fr;gap:20px" id="clsGrid">
+    <div class="card">
+      <h3>Input Sensor Data</h3>
+      <div class="grid g2" style="margin-top:14px">
+        <div class="field"><label for="fTemp">Temperature (°C)</label><input id="fTemp" type="number" value="78.2"></div>
+        <div class="field"><label for="fVib">Vibration (mm/s)</label><input id="fVib" type="number" step="0.1" value="1.8"></div>
+        <div class="field"><label for="fHum">Humidity (%)</label><input id="fHum" type="number" value="45"></div>
+        <div class="field"><label for="fPres">Pressure (bar)</label><input id="fPres" type="number" step="0.1" value="6.2"></div>
+        <div class="field"><label for="fEnergy">Energy (kWh)</label><input id="fEnergy" type="number" value="140"></div>
+        <div class="field"><label for="fStatus">Machine status</label><select id="fStatus"><option>Running</option><option>Idle</option><option>Overload</option></select></div>
+      </div>
+      <button class="btn block" id="predictBtn">Predict Maintenance</button>
+    </div>
+    <div class="grid" style="align-content:start">
+      <div class="card result" id="clsResult" aria-live="polite">
+        <div class="mono">Prediction</div>
+        <h2 id="clsLabel">Run a prediction</h2>
+        <p style="color:var(--muted)" id="clsNote">Fill the sensor form and press Predict.</p>
+        <div class="bar" style="margin-top:12px"><i id="clsBar" style="width:0;background:var(--green)"></i></div>
+      </div>
+      <div class="card">
+        <h3>Model Performance</h3>
+        <div class="grid g4 keep2" style="margin-top:12px">
+          <div class="stat"><span class="mono">Accuracy</span><b>94.9%</b></div>
+          <div class="stat"><span class="mono">Precision</span><b>93.2%</b></div>
+          <div class="stat"><span class="mono">Recall</span><b>95.4%</b></div>
+          <div class="stat"><span class="mono">F1</span><b>94.3%</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PAGE: CLUSTERING ========== -->
+<section class="page" id="clustering">
+  <div class="head">
+    <span class="badge">Unsupervised Learning · Clustering</span>
+    <h1>Machine Pattern Clustering</h1>
+    <p>Group similar operating conditions based on their sensor characteristics using high-dimensional reduction.</p>
+  </div>
+  <div class="grid" style="grid-template-columns:.8fr 1.4fr;gap:20px" id="cluGrid">
+    <div class="grid" style="align-content:start">
+      <div class="card">
+        <h3>Hyperparameters</h3>
+        <div class="field" style="margin-top:14px"><label for="algo">Select algorithm</label>
+          <select id="algo"><option>K-Means (Min-Batch enabled)</option><option>DBSCAN</option><option>Gaussian Mixture</option></select></div>
+        <div class="field"><label for="kNum">Number of clusters (k): <span id="kOut">3</span></label><input id="kNum" type="range" min="2" max="5" value="3"></div>
+        <button class="btn block" id="clusterBtn">Run Clustering</button>
+      </div>
+      <div class="card">
+        <div class="grid g3">
+          <div class="stat"><span class="mono">Clusters</span><b id="sK">3</b></div>
+          <div class="stat"><span class="mono">Samples</span><b>100k</b></div>
+          <div class="stat"><span class="mono">Silhouette</span><b id="sSil">0.68</b></div>
+        </div>
+        <div class="bar" id="dist" style="margin-top:14px"></div>
+      </div>
+    </div>
+    <div class="grid" style="align-content:start">
+      <div class="card">
+        <h3>Machine Clusters PCA 2D Projection</h3>
+        <svg id="scatter" viewBox="0 0 400 260" role="img" aria-label="PCA scatter plot of machine clusters"></svg>
+        <div class="legend mono" id="legend" style="margin-top:8px"></div>
+      </div>
+      <div class="card scroll">
+        <h3>Centroid Characterization</h3>
+        <table><thead><tr><th>Cluster</th><th>Points</th><th>Avg Temp</th><th>Avg Vib</th></tr></thead><tbody id="cTable"></tbody></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PAGE: ABOUT ========== -->
+<section class="page" id="about">
+  <div class="head">
+    <span class="badge">Project Overview</span>
+    <h1>About <span class="cyan">SmartML</span></h1>
+    <p>SmartML is a web-based ML application for analyzing smart manufacturing and industrial IoT data, created as a prototype for predictive maintenance and machine behavior analysis.</p>
+  </div>
+  <div class="grid g3">
+    <div class="card"><h3>Smart IoT Systems</h3><p class="mono">Connected sensors</p></div>
+    <div class="card"><h3>Dual Paradigms</h3><p class="mono">Supervised + Unsupervised</p></div>
+    <div class="card"><h3>Pure Telemetry</h3><p class="mono">Real-time signals</p></div>
+  </div>
+  <div class="section card accent">
+    <h2>Smart Manufacturing IoT-Cloud Monitoring Dataset</h2>
+    <p style="color:var(--muted);margin:8px 0 14px;max-width:70ch">Contains ~100k records from 50 industrial machines with telemetry: vibration, humidity, temperature, pressure, energy consumption, and operating state.</p>
+    <div class="grid g4 keep2">
+      <div class="stat"><span class="mono">Machines</span><b>50</b></div>
+      <div class="stat"><span class="mono">Records</span><b>100k</b></div>
+      <div class="stat"><span class="mono">Features</span><b>6</b></div>
+      <div class="stat"><span class="mono">Classes</span><b>3</b></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="head"><h2>Machine Learning Methodology</h2></div>
+    <div class="grid g2">
+      <div class="card"><h3>Classification Engine</h3>
+        <ul class="list"><li>Decision Tree <span class="mono">Baseline</span></li><li>Random Forest <span class="mono">Ensemble</span></li><li>Gradient Boosting <span class="mono">Ensemble</span></li></ul></div>
+      <div class="card"><h3>Clustering Engine</h3>
+        <ul class="list"><li>K-Means <span class="mono">Centroid</span></li><li>Agglomerative <span class="mono">Hierarchical</span></li><li>PCA Projection <span class="mono">2D view</span></li></ul></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="head"><h2>Industrial Informatics Tech Stack</h2></div>
+    <div class="grid g4 keep2">
+      <div class="card"><h3>Python</h3><p class="mono">Core language</p></div>
+      <div class="card"><h3>Scikit-learn</h3><p class="mono">ML algorithms</p></div>
+      <div class="card"><h3>Pandas</h3><p class="mono">Data handling</p></div>
+      <div class="card"><h3>NumPy</h3><p class="mono">Numeric compute</p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap mono">© SmartML · Industrial Informatics Prototype</div></footer>
+
+<!-- Scripts: classic scripts, order matters -->
+<script src="js/data.js"></script>
+<script src="js/router.js"></script>
+<script src="js/home.js"></script>
+<script src="js/classification.js"></script>
+<script src="js/clustering.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
