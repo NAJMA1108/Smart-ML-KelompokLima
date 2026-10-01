@@ -1,0 +1,12 @@
+/* ========== 3. LAYOUT ========== */
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.page{display:none;padding:28px 0 60px} .page.active{display:block}
+.section{margin-top:44px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+.hero{grid-template-columns:1.3fr 1fr;align-items:center;gap:32px}
+@media(max-width:820px){.g2,.g3,.g4,.hero{grid-template-columns:1fr}.g4.keep2{grid-template-columns:1fr 1fr}}
+
+/* Two-column app pages stack on mobile */
+/* Responsive stacking for two-column app pages */
+@media(max-width:820px){#clsGrid,#cluGrid{grid-template-columns:1fr!important}}

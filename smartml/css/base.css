@@ -1,0 +1,10 @@
+/* ========== 2. BASE ========== */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 15px/1.6 var(--f-sans)}
+h1,h2,h3,p{margin:0}
+h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.05rem;font-weight:700}
+.mono{font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+.cyan{color:var(--cyan)} a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
