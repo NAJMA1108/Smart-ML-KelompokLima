@@ -1,0 +1,10 @@
+/* ========== 1. TOKENS ========== */
+:root{
+  --bg:#070d19; --panel:#0d1626; --panel-2:#111d31; --line:#1b2b45;
+  --text:#e6eefb; --muted:#8497b5; --cyan:#22d3ee; --cyan-dim:#0e3a4a;
+  --green:#34d399; --red:#f43f5e; --amber:#fbbf24;
+  --f-sans:'Space Grotesk',system-ui,sans-serif; --f-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --r:10px;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);color-scheme:dark}
